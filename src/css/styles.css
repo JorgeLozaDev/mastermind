@@ -9,3 +9,32 @@
 body {
   font-family: "Inknut Antiqua", serif;
 }
+
+.Mybtn {
+  margin: 0.91em auto;
+  text-align: center;
+  position: relative;
+  border: 1px solid black;
+  transition: box-shadow 1.3s ease-out;
+  border: 0;
+  border-radius: 10px;
+}
+
+
+
+.Mybtn::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-box-shadow: inset 0px -17px var(--principal);
+  box-shadow: inset 0px -17px var(--secundario);
+  border-radius: 5px;
+}
+
+.Mybtn:active {
+  box-shadow: inset 0px -1px var(--principal);
+}
