@@ -199,3 +199,8 @@ a {
   border-radius: 50%;
 }
 
+#tabla tr td {
+  border: 1px solid black;
+  padding: 1em;
+  text-align: center;
+}
