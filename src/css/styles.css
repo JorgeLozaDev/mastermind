@@ -38,6 +38,7 @@ a {
   transition: ease-in-out 0.5s all;
   border-radius: 10px;
   line-height: 1.2em;
+  margin: auto;
 }
 
 .Mybtn::after {
@@ -150,7 +151,7 @@ a {
   padding: 2em;
   border: 1px solid black;
   border-radius: 10px;
-  box-shadow: inset 0px -17px var(--secundario);
+  box-shadow: inset 0px -17px var(--negro);
 }
 
 .instrucciones h2 {
