@@ -183,7 +183,19 @@ a {
   display: flex;
   justify-content: space-around;
 }
+.cajaColoresBasic p {
+  margin-bottom: 0;
+}
 
 .borderError {
   border: 1px solid red;
 }
+
+.bordeCircular {
+  width: 100px;
+  height: 100px;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
