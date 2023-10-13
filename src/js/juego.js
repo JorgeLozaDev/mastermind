@@ -2,8 +2,14 @@
 let dificultad = sessionStorage.getItem("dificult");
 let nombreJugador = sessionStorage.getItem("j1");
 let coloresAJugar = JSON.parse(sessionStorage.getItem("coloresJuego"));
+// cogemos los colores principales y los mezaclamos
+shuffle(coloresAJugar);
+let coloresAmostrar = coloresAJugar;
+coloresAmostrar = shuffle(coloresAmostrar);
 let currentRow = 0;
 
+console.log(coloresAJugar,"sdf");
+console.log(coloresAmostrar,"as");
 // buscamos el id donde ira el nombre y lo colocamos en su caja
 document.getElementById("nombre").innerHTML = nombreJugador;
 
@@ -12,7 +18,7 @@ const asignarColor = () => {
   let cajasColores = document.getElementsByClassName("bordeCircular");
 
   for (let index = 0; index < cajasColores.length; index++) {
-    cajasColores[index].style.backgroundColor = coloresAJugar[index];
+    cajasColores[index].style.backgroundColor = coloresAmostrar[index];
   }
 };
 
@@ -62,9 +68,60 @@ pintarFila = (e) => {
   }
 };
 
+comprobar = () => {
+  // buscamos el id de la fila actual a comprobar
+  let filaPintar = document.getElementById(currentRow + "_tabla");
+  let mensaje = document.getElementById("mensaje");
+  const seleccionActual = [];
+
+  //recorremos sus hijos y los vamos pintando
+  for (let i = 0; i < filaPintar.childNodes.length; i++) {
+    if (filaPintar.childNodes[i].getAttribute("data-pintado") == "") {
+      mensaje.innerHTML = "Rellena todas las filas";
+      break;
+    } else {
+      mensaje.innerHTML = "";
+      // let color = filaPintar.childNodes[i].style.backgroundColor
+      //   .substring(3)
+      //   .slice(1, -1)
+      //   .split(",");
+      console.log(rgbToHex2(filaPintar.childNodes[i].style.backgroundColor));
+      // console.log(rgbToHex(color[0], color[1], color[2]));
+      // color.substring()
+      // seleccionActual.push(filaPintar.childNodes[i].style.backgroundColor);
+    }
+  }
+
+  // for (let j = 0; j < coloresAJugar.length; j++) {
+  //   console.log(colorToHex(coloresAJugar[j]));
+  // }
+
+  console.log(seleccionActual);
+  // console.log(seleccionActual[0].split(","));
+};
+
+//funcion para pasar de rbg a hex
+const rgbToHex = (r, g, b) => {
+  "#" +
+    [r, g, b]
+      .map((x) => {
+        const hex = x.toString(16);
+        return hex.length === 1 ? "0" + hex : hex;
+      })
+      .join("");
+};
+
+function rgbToHex2(a) {
+  a = a.replace(/[^\d,]/g, "").split(",");
+  return (
+    "#" +
+    ((1 << 24) + (+a[0] << 16) + (+a[1] << 8) + +a[2]).toString(16).slice(1)
+  );
+}
+
 //llamamos a la funcion y le pasamos la dificultad
 pintarTablaSegunDificultad(dificultad);
 //pintamos los colores con los que vamos a jugar
 asignarColor();
 
-console.log(nombreJugador, dificultad, coloresAJugar);
+// console.log(nombreJugador, dificultad, coloresAJugar, coloresAmostrar);

@@ -13,7 +13,7 @@ const juegoBasics = (dificultad) => {
     colores.push(document.getElementById("color3").value);
     colores.push(document.getElementById("color4").value);
     // mezclamos el contenido
-    shuffle(colores);
+    // shuffle(colores);
     // guardamos en sessionStorage el nombre del jugador, dificultad y colores
     sessionStorage.setItem("j1", jugador.value);
     sessionStorage.setItem("dificult", dificultad);
@@ -21,11 +21,14 @@ const juegoBasics = (dificultad) => {
     //despues de guardar los datos en sessionSotrage redirigimos a la pagina para jugar
     window.location.href = "./juego.html";
   }
-
-
 };
 
+let randomColor = [];
 // funccion para randomizar el array de colores
 const shuffle = (array) => {
   return array.sort(() => Math.random() - 0.5);
+  // for (let k = 0; k < array.length; k++) {
+  //   random = Math.floor(Math.random() * array.length);
+  //   randomColor.push(array[random]);
+  // }
 };
