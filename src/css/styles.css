@@ -28,10 +28,10 @@ a {
   justify-content: space-around;
 }
 
-.Mybtn {
+.myBtn {
   padding: 1em;
   height: 4em;
-  width: 5em;
+  width: max-content;
   text-align: center;
   position: relative;
   border: 1px solid black;
@@ -41,7 +41,7 @@ a {
   margin: auto;
 }
 
-.Mybtn::after {
+.myBtn::after {
   content: "";
   position: absolute;
   z-index: 0;
@@ -55,13 +55,13 @@ a {
   transition: ease-in-out 0.25s all;
 }
 
-.Mybtn:active {
+.myBtn:active {
   box-shadow: 0px 0px 0px #a5a5a5, -1px -1px 10px #e2e2e2,
     inset 5px 5px 10px #b5b5b5, inset -5px -5px 5px #ffffff;
   line-height: 2em;
 }
 
-.Mybtn:active::after {
+.myBtn:active::after {
   box-shadow: inset 0px -4px var(--principal);
 }
 
