@@ -2,14 +2,15 @@
 let dificultad = sessionStorage.getItem("dificult");
 let nombreJugador = sessionStorage.getItem("j1");
 let coloresAJugar = JSON.parse(sessionStorage.getItem("coloresJuego"));
-// cogemos los colores principales y los mezaclamos
+// cogemos los colores principales y los mezaclamos, de esta forma nadie sabe cual es la combinación correcta
 shuffle(coloresAJugar);
+// estos colores lo asignamos a una nueva variable
 let coloresAmostrar = coloresAJugar;
+// y los mezclamos
 coloresAmostrar = shuffle(coloresAmostrar);
+//variable aux para indicar la fila que estamos comprobando
 let currentRow = 0;
 
-console.log(coloresAJugar,"sdf");
-console.log(coloresAmostrar,"as");
 // buscamos el id donde ira el nombre y lo colocamos en su caja
 document.getElementById("nombre").innerHTML = nombreJugador;
 
@@ -74,7 +75,7 @@ comprobar = () => {
   let mensaje = document.getElementById("mensaje");
   const seleccionActual = [];
 
-  //recorremos sus hijos y los vamos pintando
+  //recorremos sus hijos y comproblamos si todas las cajas estan rellenadas, mostramos un mensaje
   for (let i = 0; i < filaPintar.childNodes.length; i++) {
     if (filaPintar.childNodes[i].getAttribute("data-pintado") == "") {
       mensaje.innerHTML = "Rellena todas las filas";
@@ -91,13 +92,6 @@ comprobar = () => {
       // seleccionActual.push(filaPintar.childNodes[i].style.backgroundColor);
     }
   }
-
-  // for (let j = 0; j < coloresAJugar.length; j++) {
-  //   console.log(colorToHex(coloresAJugar[j]));
-  // }
-
-  console.log(seleccionActual);
-  // console.log(seleccionActual[0].split(","));
 };
 
 //funcion para pasar de rbg a hex
@@ -123,5 +117,3 @@ function rgbToHex2(a) {
 pintarTablaSegunDificultad(dificultad);
 //pintamos los colores con los que vamos a jugar
 asignarColor();
-
-// console.log(nombreJugador, dificultad, coloresAJugar, coloresAmostrar);

@@ -4,6 +4,7 @@
   --principal: #89939e;
   --secundario: #dedede;
   --negro: #000;
+  --blanco:#fff;
 }
 
 body {
@@ -192,8 +193,8 @@ a {
 }
 
 .bordeCircular {
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
   border: none;
   cursor: pointer;
   border-radius: 50%;
@@ -203,4 +204,11 @@ a {
   border: 1px solid black;
   padding: 1em;
   text-align: center;
+}
+
+.fondoBlanco{
+  background-color: var(--blanco);
+}
+tr{
+  height: 3.5em;
 }

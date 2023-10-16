@@ -27,56 +27,44 @@
       </div>
     </div>
     <div class="container py-5">
-      <div class="row">
+      <div class="row py-4 sticky-top fondoBlanco">
+        <div class="col-md-3">
+          <p>Nombre :</p>
+          <p id="nombre"></p>
+        </div>
+
         <div class="col-md-4">
-          <div class="row">
-            <div class="col">
-              <p>Nombre :</p>
-            </div>
-          </div>
+          <p>Colores:</p>
 
-          <div class="row">
-            <div class="col">
-              <p id="nombre"></p>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col">
-              <p>Colores:</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <div class="cajaColoresBasic">
-                <p
-                  class="circuloPicker bordeCircular"
-                  onclick="pintarFila(this)"
-                ></p>
-                <p
-                  class="circuloPicker bordeCircular"
-                  onclick="pintarFila(this)"
-                ></p>
-                <p
-                  class="circuloPicker bordeCircular"
-                  onclick="pintarFila(this)"
-                ></p>
-                <p
-                  class="circuloPicker bordeCircular"
-                  onclick="pintarFila(this)"
-                ></p>
-              </div>
-            </div>
-          </div>
-          <div class="row py-4">
-            <div class="col text-center">
-              <p id="mensaje"></p>
-              <p class="myBtn" onclick="comprobar()">Comprobar</p>
-            </div>
+          <div class="cajaColoresBasic">
+            <p
+              class="circuloPicker bordeCircular"
+              onclick="pintarFila(this)"
+            ></p>
+            <p
+              class="circuloPicker bordeCircular"
+              onclick="pintarFila(this)"
+            ></p>
+            <p
+              class="circuloPicker bordeCircular"
+              onclick="pintarFila(this)"
+            ></p>
+            <p
+              class="circuloPicker bordeCircular"
+              onclick="pintarFila(this)"
+            ></p>
           </div>
         </div>
 
-        <div class="col-md-8">
+        <div class="col-md-4 text-center d-flex">
+          <p id="mensaje"></p>
+          <p class="myBtn" onclick="comprobar()">Comprobar</p>
+          <p class="myBtn" onclick="">Borrar</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
           <table class="table" id="tabla">
             <tbody></tbody>
           </table>
