@@ -9,7 +9,6 @@ let coloresAmostrar = coloresAJugar;
 // y los mezclamos
 shuffle(coloresAmostrar);
 // console.log(coloresAJugar);
-// console.log(coloresAmostrar);
 //variable aux para indicar la fila que estamos comprobando
 let currentRow = 0;
 let seleccionActual = [];
@@ -80,18 +79,18 @@ comprobar = () => {
   //recorremos sus hijos y comproblamos si todas las cajas estan rellenadas, mostramos un mensaje
   for (let i = 0; i < filaPintar.childNodes.length; i++) {
     if (filaPintar.childNodes[i].getAttribute("data-pintado") == "") {
+      mensaje.classList.add("mensaje");
       mensaje.innerHTML = "Rellena todas las filas";
+      mensaje.addEventListener("animationend", () => {
+        mensaje.classList.remove("mensaje");
+        mensaje.innerHTML = "";
+      });
       break;
     } else {
       mensaje.innerHTML = "";
-
-      // console.log(rgbToHex2(filaPintar.childNodes[i].style.backgroundColor));
       seleccionActual.push(
         rgbToHex2(filaPintar.childNodes[i].style.backgroundColor)
       );
-      // console.log(rgbToHex(color[0], color[1], color[2]));
-      // color.substring()
-      // seleccionActual.push(filaPintar.childNodes[i].style.backgroundColor);
     }
   }
 
@@ -101,36 +100,31 @@ comprobar = () => {
     if (!result) {
       currentRow++;
       seleccionActual = [];
-      mensaje.innerHTML="Te has equivocado, prueba otra vez"
-    }else{
+      mensaje.classList.add("mensaje");
+      mensaje.innerHTML = "Te has equivocado, prueba otra vez";
+      mensaje.addEventListener("animationend", () => {
+        mensaje.classList.remove("mensaje");
+        mensaje.innerHTML = "";
+      });
+      if (currentRow == 10) {
+        currentRow = 0;
+        sessionStorage.setItem("resultado", "lose");
+        window.location.href = "./resultado.html";
+      }
+    } else {
       sessionStorage.setItem("resultado", "win");
-      window.location.href = "./juego.html";
+      window.location.href = "./resultado.html";
     }
   }
-
-  // console.log(seleccionActual);
 };
 
-console.log(coloresAJugar + "bueno");
-
-//funcion para pasar de rbg a hex
-const rgbToHex = (r, g, b) => {
-  "#" +
-    [r, g, b]
-      .map((x) => {
-        const hex = x.toString(16);
-        return hex.length === 1 ? "0" + hex : hex;
-      })
-      .join("");
-};
-
-function rgbToHex2(a) {
+const rgbToHex2 = (a) => {
   a = a.replace(/[^\d,]/g, "").split(",");
   return (
     "#" +
     ((1 << 24) + (+a[0] << 16) + (+a[1] << 8) + +a[2]).toString(16).slice(1)
   );
-}
+};
 
 const comprobarResultado = (arr1, arr2) => {
   // comparing each element of array
@@ -142,6 +136,27 @@ const comprobarResultado = (arr1, arr2) => {
     }
   }
   return result;
+};
+
+borrar = () => {
+  let filaPintar = document.getElementById(currentRow + "_tabla");
+  let id;
+  for (let i = 0; i < filaPintar.childNodes.length; i++) {
+    if (filaPintar.childNodes[i].getAttribute("data-pintado") == "") {
+      id = i;
+      break;
+    }
+  }
+
+  if (id) {
+    filaPintar.childNodes[id - 1].setAttribute("data-pintado", "");
+    filaPintar.childNodes[id - 1].innerHTML = "?";
+    filaPintar.childNodes[id - 1].style.backgroundColor = "";
+  } else {
+    filaPintar.childNodes[filaPintar.childNodes.length - 1].setAttribute("data-pintado", "");
+    filaPintar.childNodes[filaPintar.childNodes.length - 1].innerHTML = "?";
+    filaPintar.childNodes[filaPintar.childNodes.length - 1].style.backgroundColor = "";
+  }
 };
 //llamamos a la funcion y le pasamos la dificultad
 pintarTablaSegunDificultad(dificultad);

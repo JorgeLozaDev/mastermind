@@ -4,7 +4,7 @@
   --principal: #89939e;
   --secundario: #dedede;
   --negro: #000;
-  --blanco:#fff;
+  --blanco: #fff;
 }
 
 body {
@@ -41,6 +41,13 @@ a {
   line-height: 1.2em;
   margin: auto;
   cursor: pointer;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
 
 .myBtn::after {
@@ -156,6 +163,15 @@ a {
   box-shadow: inset 0px -17px var(--negro);
 }
 
+.mensaje {
+  padding: 0 0 1.2em 0;
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: inset 0px -17px var(--negro);
+  -webkit-animation: fadeinout 3s linear forwards;
+  animation: fadeinout 3s linear forwards;
+}
+
 .instrucciones h2 {
   text-align: center;
 }
@@ -207,9 +223,29 @@ a {
   text-align: center;
 }
 
-.fondoBlanco{
+.fondoBlanco {
   background-color: var(--blanco);
 }
-tr{
+tr {
   height: 3.5em;
+}
+
+@-webkit-keyframes fadeinout {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeinout {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
 }
