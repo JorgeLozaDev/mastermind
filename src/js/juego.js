@@ -101,6 +101,10 @@ comprobar = () => {
     if (!result) {
       currentRow++;
       seleccionActual = [];
+      mensaje.innerHTML="Te has equivocado, prueba otra vez"
+    }else{
+      sessionStorage.setItem("resultado", "win");
+      window.location.href = "./juego.html";
     }
   }
 
