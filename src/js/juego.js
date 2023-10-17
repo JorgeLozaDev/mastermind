@@ -12,7 +12,7 @@ shuffle(coloresAmostrar);
 // console.log(coloresAmostrar);
 //variable aux para indicar la fila que estamos comprobando
 let currentRow = 0;
-const seleccionActual = [];
+let seleccionActual = [];
 
 // buscamos el id donde ira el nombre y lo colocamos en su caja
 document.getElementById("nombre").innerHTML = nombreJugador;
@@ -84,10 +84,7 @@ comprobar = () => {
       break;
     } else {
       mensaje.innerHTML = "";
-      // let color = filaPintar.childNodes[i].style.backgroundColor
-      //   .substring(3)
-      //   .slice(1, -1)
-      //   .split(",");
+
       // console.log(rgbToHex2(filaPintar.childNodes[i].style.backgroundColor));
       seleccionActual.push(
         rgbToHex2(filaPintar.childNodes[i].style.backgroundColor)
@@ -97,7 +94,17 @@ comprobar = () => {
       // seleccionActual.push(filaPintar.childNodes[i].style.backgroundColor);
     }
   }
-  console.log(seleccionActual);
+
+  if (seleccionActual.length > 0) {
+    let result = comprobarResultado(seleccionActual, coloresAJugar);
+    console.log(result);
+    if (!result) {
+      currentRow++;
+      seleccionActual = [];
+    }
+  }
+
+  // console.log(seleccionActual);
 };
 
 console.log(coloresAJugar + "bueno");
@@ -121,6 +128,17 @@ function rgbToHex2(a) {
   );
 }
 
+const comprobarResultado = (arr1, arr2) => {
+  // comparing each element of array
+  for (let i = 0; i < arr1.length; i++) {
+    if (arr1[i] !== arr2[i]) {
+      return false;
+    } else {
+      result = true;
+    }
+  }
+  return result;
+};
 //llamamos a la funcion y le pasamos la dificultad
 pintarTablaSegunDificultad(dificultad);
 //pintamos los colores con los que vamos a jugar

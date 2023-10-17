@@ -40,6 +40,7 @@ a {
   border-radius: 10px;
   line-height: 1.2em;
   margin: auto;
+  cursor: pointer;
 }
 
 .myBtn::after {
@@ -164,8 +165,8 @@ a {
   -moz-appearance: none;
   appearance: none;
   background-color: transparent;
-  width: 100px;
-  height: 100px;
+  width: 5em;
+  height: 5em;
   border: none;
   cursor: pointer;
 }
@@ -193,8 +194,8 @@ a {
 }
 
 .bordeCircular {
-  width: 70px;
-  height: 70px;
+  width: 5em;
+  height: 5em;
   border: none;
   cursor: pointer;
   border-radius: 50%;
