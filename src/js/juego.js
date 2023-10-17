@@ -7,9 +7,12 @@ shuffle(coloresAJugar);
 // estos colores lo asignamos a una nueva variable
 let coloresAmostrar = coloresAJugar;
 // y los mezclamos
-coloresAmostrar = shuffle(coloresAmostrar);
+shuffle(coloresAmostrar);
+// console.log(coloresAJugar);
+// console.log(coloresAmostrar);
 //variable aux para indicar la fila que estamos comprobando
 let currentRow = 0;
+const seleccionActual = [];
 
 // buscamos el id donde ira el nombre y lo colocamos en su caja
 document.getElementById("nombre").innerHTML = nombreJugador;
@@ -73,7 +76,6 @@ comprobar = () => {
   // buscamos el id de la fila actual a comprobar
   let filaPintar = document.getElementById(currentRow + "_tabla");
   let mensaje = document.getElementById("mensaje");
-  const seleccionActual = [];
 
   //recorremos sus hijos y comproblamos si todas las cajas estan rellenadas, mostramos un mensaje
   for (let i = 0; i < filaPintar.childNodes.length; i++) {
@@ -86,13 +88,19 @@ comprobar = () => {
       //   .substring(3)
       //   .slice(1, -1)
       //   .split(",");
-      console.log(rgbToHex2(filaPintar.childNodes[i].style.backgroundColor));
+      // console.log(rgbToHex2(filaPintar.childNodes[i].style.backgroundColor));
+      seleccionActual.push(
+        rgbToHex2(filaPintar.childNodes[i].style.backgroundColor)
+      );
       // console.log(rgbToHex(color[0], color[1], color[2]));
       // color.substring()
       // seleccionActual.push(filaPintar.childNodes[i].style.backgroundColor);
     }
   }
+  console.log(seleccionActual);
 };
+
+console.log(coloresAJugar + "bueno");
 
 //funcion para pasar de rbg a hex
 const rgbToHex = (r, g, b) => {
