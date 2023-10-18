@@ -12,8 +12,7 @@ const juegoBasics = (dificultad) => {
     colores.push(document.getElementById("color2").value);
     colores.push(document.getElementById("color3").value);
     colores.push(document.getElementById("color4").value);
-    // mezclamos el contenido
-    // shuffle(colores);
+
     // guardamos en sessionStorage el nombre del jugador, dificultad y colores
     sessionStorage.setItem("j1", jugador.value);
     sessionStorage.setItem("dificult", dificultad);
@@ -23,12 +22,25 @@ const juegoBasics = (dificultad) => {
   }
 };
 
-let randomColor = [];
 // funccion para randomizar el array de colores
+// const shuffle = (array) => {
+//   return array.sort(() => Math.random() - 0.5);
+// };
+
 const shuffle = (array) => {
-  return array.sort(() => Math.random() - 0.5);
-  // for (let k = 0; k < array.length; k++) {
-  //   random = Math.floor(Math.random() * array.length);
-  //   randomColor.push(array[random]);
-  // }
-};
+  let currentIndex = array.length,  randomIndex;
+
+  // While there remain elements to shuffle.
+  while (currentIndex > 0) {
+
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+
+  return array;
+}

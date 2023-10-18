@@ -3,12 +3,13 @@ let dificultad = sessionStorage.getItem("dificult");
 let nombreJugador = sessionStorage.getItem("j1");
 let coloresAJugar = JSON.parse(sessionStorage.getItem("coloresJuego"));
 // cogemos los colores principales y los mezaclamos, de esta forma nadie sabe cual es la combinación correcta
-shuffle(coloresAJugar);
+// shuffle(coloresAJugar);
+// console.log( coloresAJugar)
 // estos colores lo asignamos a una nueva variable
 let coloresAmostrar = coloresAJugar;
 // y los mezclamos
 shuffle(coloresAmostrar);
-// console.log(coloresAJugar);
+console.log(coloresAJugar);
 //variable aux para indicar la fila que estamos comprobando
 let currentRow = 0;
 let seleccionActual = [];
