@@ -168,8 +168,8 @@ a {
   border: 1px solid black;
   border-radius: 10px;
   box-shadow: inset 0px -17px var(--negro);
-  -webkit-animation: fadeinout 3s linear forwards;
-  animation: fadeinout 3s linear forwards;
+  -webkit-animation: fadeinout 2s linear forwards;
+  animation: fadeinout 2s linear forwards;
 }
 
 .instrucciones h2 {
@@ -248,4 +248,18 @@ tr {
   50% {
     opacity: 1;
   }
+}
+
+.cajaResultado{
+  margin: 2em;
+  padding: 2em;
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: inset 0px -17px var(--negro);
+  text-align: center;
+}
+
+.divBtnResult{
+  display: flex;
+  padding: 2em 0;
 }
