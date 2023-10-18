@@ -37,15 +37,12 @@ const pintarTabla = (fila) => {
   let tabla = document.getElementById("tabla").getElementsByTagName("tbody")[0];
   for (let index = 0; index < fila; index++) {
     tabla.insertRow().innerHTML =
-      //averiguar porque no asigna los ids
-      // "<tr id='index'>" +
       "<tr>" +
       "<td data-pintado=''>?</td>" +
       "<td data-pintado=''>?</td>" +
       "<td data-pintado=''>?</td>" +
       "<td data-pintado=''>?</td>" +
       "</tr>";
-    // console.log(index);
   }
 
   //como no asigna bien los id vamos a asignarlo ahora
@@ -80,11 +77,12 @@ comprobar = () => {
   for (let i = 0; i < filaPintar.childNodes.length; i++) {
     if (filaPintar.childNodes[i].getAttribute("data-pintado") == "") {
       mensaje.classList.add("mensaje");
-      mensaje.innerHTML = "Rellena todas las filas";
+      mensaje.innerHTML = "Rellena la fila";
       mensaje.addEventListener("animationend", () => {
         mensaje.classList.remove("mensaje");
         mensaje.innerHTML = "";
       });
+      seleccionActual = [];
       break;
     } else {
       mensaje.innerHTML = "";
@@ -94,9 +92,9 @@ comprobar = () => {
     }
   }
 
-  if (seleccionActual.length > 0) {
+  if (seleccionActual.length > 3) {
     let result = comprobarResultado(seleccionActual, coloresAJugar);
-    console.log(result);
+
     if (!result) {
       currentRow++;
       seleccionActual = [];
@@ -153,9 +151,14 @@ borrar = () => {
     filaPintar.childNodes[id - 1].innerHTML = "?";
     filaPintar.childNodes[id - 1].style.backgroundColor = "";
   } else {
-    filaPintar.childNodes[filaPintar.childNodes.length - 1].setAttribute("data-pintado", "");
+    filaPintar.childNodes[filaPintar.childNodes.length - 1].setAttribute(
+      "data-pintado",
+      ""
+    );
     filaPintar.childNodes[filaPintar.childNodes.length - 1].innerHTML = "?";
-    filaPintar.childNodes[filaPintar.childNodes.length - 1].style.backgroundColor = "";
+    filaPintar.childNodes[
+      filaPintar.childNodes.length - 1
+    ].style.backgroundColor = "";
   }
 };
 //llamamos a la funcion y le pasamos la dificultad
