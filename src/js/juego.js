@@ -3,8 +3,6 @@ let dificultad = sessionStorage.getItem("dificult");
 let nombreJugador = sessionStorage.getItem("j1");
 let coloresAJugar = JSON.parse(sessionStorage.getItem("coloresJuego"));
 // cogemos los colores principales y los mezaclamos, de esta forma nadie sabe cual es la combinación correcta
-// shuffle(coloresAJugar);
-// console.log( coloresAJugar)
 // estos colores lo asignamos a una nueva variable
 let coloresAmostrar = coloresAJugar;
 // y los mezclamos
@@ -43,7 +41,7 @@ const pintarTabla = (fila) => {
       "<td data-pintado=''>?</td>" +
       "<td data-pintado=''>?</td>" +
       "<td data-pintado=''>?</td>" +
-      "</tr>";
+      "</tr> ";
   }
 
   //como no asigna bien los id vamos a asignarlo ahora
@@ -134,8 +132,11 @@ const comprobarResultado = (arr1, arr2) => {
       result = true;
     }
   }
+
   return result;
 };
+
+pintarAyuda = () => {};
 
 borrar = () => {
   let filaPintar = document.getElementById(currentRow + "_tabla");
@@ -162,6 +163,7 @@ borrar = () => {
     ].style.backgroundColor = "";
   }
 };
+
 //llamamos a la funcion y le pasamos la dificultad
 pintarTablaSegunDificultad(dificultad);
 //pintamos los colores con los que vamos a jugar
