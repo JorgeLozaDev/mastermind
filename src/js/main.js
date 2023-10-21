@@ -23,24 +23,24 @@ const juegoBasics = (dificultad) => {
 };
 
 // funccion para randomizar el array de colores
-// const shuffle = (array) => {
-//   return array.sort(() => Math.random() - 0.5);
-// };
-
 const shuffle = (array) => {
-  let currentIndex = array.length,  randomIndex;
+  return array.sort(() => Math.random() - 0.5);
+};
 
-  // While there remain elements to shuffle.
-  while (currentIndex > 0) {
+// const shuffle = (array) => {
+//   let currentIndex = array.length,  randomIndex;
 
-    // Pick a remaining element.
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
+//   // While there remain elements to shuffle.
+//   while (currentIndex > 0) {
 
-    // And swap it with the current element.
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex], array[currentIndex]];
-  }
+//     // Pick a remaining element.
+//     randomIndex = Math.floor(Math.random() * currentIndex);
+//     currentIndex--;
 
-  return array;
-}
+//     // And swap it with the current element.
+//     [array[currentIndex], array[randomIndex]] = [
+//       array[randomIndex], array[currentIndex]];
+//   }
+
+//   return array;
+// }
