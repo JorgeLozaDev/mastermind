@@ -42,7 +42,12 @@ Juego
 
 En esta página se podra ver el nombre del jugador, los colores seleccionados previamente (desordenados), dos botones, un botón de comprobar y otro de borrar. Tambien veras una tabla la cual se ira rellenando segun se haga click en los colores circulares.
 
-P
+Cuando se haga click en alguno de los circulos de colores, este rellenara la caja correspondiente de su fila, esto se repetira hasta que se complete las 4 cajas, cuando hagamos click en el botón de comprobar, se revisara si la selección actual es igual al resultado, si es correcto, se llevara al jugador a la siguiente página, si no lo es, en mitad de las cajas apareceran unos iconos, los cuales indicaran una "X" si el color seleccionado no esta dentro de la opción de resultado, un "?" si el color si esta dentro de la selección, pero ese no es su lugar correspondiente y un "✅", si el color existe y esta en la posición correcta
+
+Resultado
+![RESULTADO](src/img/Screenshot_5.png)
+![RESULTADO](src/img/Screenshot_6.png)
+En esta página se mostrar un mensaje, el contenido variara, dependiendo del resultado del juego, en ambos casos, se le preguntara al jugador si quiere jugar otra vez, en el caso de que pulse no, se le llevara a la página de inicio, si pulsa si, volvera al tablero, se le genera una nueva combinación, la cual el jugador tiene que volver a adivinar.
 
 ## Autores ✒️
 
