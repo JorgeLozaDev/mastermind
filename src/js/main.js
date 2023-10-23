@@ -14,12 +14,25 @@ const juegoBasics = (dificultad) => {
     colores.push(document.getElementById("color4").value);
 
     // guardamos en sessionStorage el nombre del jugador, dificultad y colores
-    sessionStorage.setItem("j1", jugador.value);
+    sessionStorage.setItem("j1", sanitize(jugador.value));
     sessionStorage.setItem("dificult", dificultad);
     sessionStorage.setItem("coloresJuego", JSON.stringify(colores));
     //despues de guardar los datos en sessionSotrage redirigimos a la pagina para jugar
     window.location.href = "./juego.html";
   }
+};
+
+sanitize = (string) => {
+  const map = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#x27;",
+    "/": "&#x2F;",
+  };
+  const reg = /[&<>"'/]/gi;
+  return string.replace(reg, (match) => map[match]);
 };
 
 // funccion para randomizar el array de colores

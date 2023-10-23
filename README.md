@@ -37,10 +37,12 @@ Jugar
 
 En esta página, tienes una caja en la cual se colocara el nombre del jugador y 4 circulos en los cuales tienes que seleccionar los colores con los que quieres jugar y cuando estes listo simplemente dale a jugar
 
-Contacto
-![CONTACTO](src/img/Screenshot_4.png)
+Juego
+![JUEGO](src/img/Screenshot_4.png)
 
-En esta página te encontrarás, con más información de nuestra empresa, nuestras redes sociales y el formulario de contacto.
+En esta página se podra ver el nombre del jugador, los colores seleccionados previamente (desordenados), dos botones, un botón de comprobar y otro de borrar. Tambien veras una tabla la cual se ira rellenando segun se haga click en los colores circulares.
+
+P
 
 ## Autores ✒️
 

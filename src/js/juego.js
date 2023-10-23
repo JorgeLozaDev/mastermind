@@ -2,6 +2,7 @@
 let dificultad = sessionStorage.getItem("dificult");
 let nombreJugador = sessionStorage.getItem("j1");
 let coloresAJugar = JSON.parse(sessionStorage.getItem("coloresJuego"));
+console.log(nombreJugador)
 // cogemos los colores principales y los mezaclamos, de esta forma nadie sabe cual es la combinación correcta
 shuffle(coloresAJugar);
 // estos colores lo asignamos a una nueva variable
@@ -108,6 +109,7 @@ comprobar = () => {
       // probar con for luego hacer un find para cada elementos del array
       let arrComprobacion = [];
       for (let h = 0; h < seleccionActual.length; h++) {
+
         arrComprobacion.push(
           coloresAJugar.findIndex((e) => e == seleccionActual[h])
         );
