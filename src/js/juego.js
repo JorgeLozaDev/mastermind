@@ -4,10 +4,12 @@ let nombreJugador = sessionStorage.getItem("j1");
 let coloresAJugar = JSON.parse(sessionStorage.getItem("coloresJuego"));
 // cogemos los colores principales y los mezaclamos, de esta forma nadie sabe cual es la combinación correcta
 // estos colores lo asignamos a una nueva variable
+shuffle(coloresAJugar);
+// console.log(coloresAJugar + " inicial");
 let coloresAmostrar = coloresAJugar;
 // y los mezclamos
 shuffle(coloresAmostrar);
-console.log(coloresAJugar);
+// console.log(coloresAJugar + " a mostrar");
 //variable aux para indicar la fila que estamos comprobando
 let currentRow = 0;
 let seleccionActual = [];
@@ -72,6 +74,7 @@ comprobar = () => {
   let filaPintar = document.getElementById(currentRow + "_tabla");
   let mensaje = document.getElementById("mensaje");
 
+  console.log(filaPintar.childNodes[0].getAttribute("data-pintado"));
   //recorremos sus hijos y comproblamos si todas las cajas estan rellenadas, mostramos un mensaje
   for (let i = 0; i < filaPintar.childNodes.length; i++) {
     if (filaPintar.childNodes[i].getAttribute("data-pintado") == "") {
