@@ -2,15 +2,12 @@
 let dificultad = sessionStorage.getItem("dificult");
 let nombreJugador = sessionStorage.getItem("j1");
 let coloresAJugar = JSON.parse(sessionStorage.getItem("coloresJuego"));
-console.log(nombreJugador)
 // cogemos los colores principales y los mezaclamos, de esta forma nadie sabe cual es la combinación correcta
 shuffle(coloresAJugar);
 // estos colores lo asignamos a una nueva variable
-// shuffle(coloresAJugar);
 let coloresAmostrar = [...coloresAJugar];
 // y los mezclamos
 shuffle(coloresAmostrar);
-console.log(coloresAJugar);
 //variable aux para indicar la fila que estamos comprobando
 let currentRow = 0;
 let seleccionActual = [];
@@ -39,8 +36,6 @@ const pintarTabla = (fila) => {
   let tabla = document.getElementById("tabla").getElementsByTagName("tbody")[0];
   for (let index = 0; index < fila; index++) {
     tabla.insertRow().innerHTML =
-      //averiguar porque no asigna los ids
-      // "<tr id='index'>" +
       "<tr>" +
       "<td data-pintado=''>?</td>" +
       "<td data-pintado=''>?</td>" +
@@ -106,43 +101,49 @@ comprobar = () => {
         mensaje.classList.remove("mensaje");
         mensaje.innerHTML = "";
       });
-      // probar con for luego hacer un find para cada elementos del array
+      // buscamos en nuestro array principal si existen elementos comunes en nuestro array seleccionado, si existe guardamos su posicion
       let arrComprobacion = [];
       for (let h = 0; h < seleccionActual.length; h++) {
-
         arrComprobacion.push(
           coloresAJugar.findIndex((e) => e == seleccionActual[h])
         );
       }
 
       let filaPintar = document.getElementById(currentRow + "_tabla");
-      console.log(arrComprobacion);
+
       for (let i = 0; i < filaPintar.childNodes.length; i++) {
+        // en nuestro array de control si un elemento no existe nos devuelve un -1 por lo cual nosotros pintaremos una cruz indicando que dicho elemento no existe
         if (arrComprobacion[i] == -1) {
           filaPintar.childNodes[i].innerHTML =
             "<span class='iconosVerificacion'> ❌</span>";
         } else if (arrComprobacion[i] == i) {
+          // en caso de que ese elemento exista y se encuentre en la posicion correcta se mostrara el check
           filaPintar.childNodes[i].innerHTML =
             "<span class='iconosVerificacion'>✅</span>";
         } else {
+          // en caso de que el elemento exista pero se encuentra en otro lugar se mostrara el icono de interrogacion
           filaPintar.childNodes[i].innerHTML =
             "<span class='iconosVerificacion'>❓</span>";
         }
       }
+      // aumentomos nuestra variable y vaciamos nuestro array con las opciones que el jugador ha seleccionado
       currentRow++;
       seleccionActual = [];
+      // cuando hemos alcanzado el maximo de oportunidades, llevamos al jugador a la pagina de resultado indicandole que ha perdido
       if (currentRow == 10) {
         currentRow = 0;
         sessionStorage.setItem("resultado", "lose");
         window.location.href = "./resultado.html";
       }
     } else {
+      // en el caso de que el jugador acierte se le lleva a la pagina de resultado
       sessionStorage.setItem("resultado", "win");
       window.location.href = "./resultado.html";
     }
   }
 };
 
+// funcion para pasar el texto a hexadecimal
 const rgbToHex2 = (a) => {
   a = a.replace(/[^\d,]/g, "").split(",");
   return (
@@ -151,6 +152,7 @@ const rgbToHex2 = (a) => {
   );
 };
 
+//funcion para comprobar si los elementos seleccionados y los guardados son iguales
 const comprobarResultado = (arr1, arr2) => {
   // comparing each element of array
   for (let i = 0; i < arr1.length; i++) {
@@ -163,6 +165,7 @@ const comprobarResultado = (arr1, arr2) => {
   return result;
 };
 
+//funcion para borrar el ultimo elemento pintado de la fila
 borrar = () => {
   let filaPintar = document.getElementById(currentRow + "_tabla");
   let id;
@@ -189,7 +192,6 @@ borrar = () => {
   }
 };
 
-// mostrarAyuda = (arr, arr2) => {};
 //llamamos a la funcion y le pasamos la dificultad
 pintarTablaSegunDificultad(dificultad);
 //pintamos los colores con los que vamos a jugar
