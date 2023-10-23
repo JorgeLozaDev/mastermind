@@ -3,13 +3,13 @@ let dificultad = sessionStorage.getItem("dificult");
 let nombreJugador = sessionStorage.getItem("j1");
 let coloresAJugar = JSON.parse(sessionStorage.getItem("coloresJuego"));
 // cogemos los colores principales y los mezaclamos, de esta forma nadie sabe cual es la combinación correcta
-// estos colores lo asignamos a una nueva variable
 shuffle(coloresAJugar);
-// console.log(coloresAJugar + " inicial");
-let coloresAmostrar = coloresAJugar;
+// estos colores lo asignamos a una nueva variable
+// shuffle(coloresAJugar);
+let coloresAmostrar = [...coloresAJugar];
 // y los mezclamos
 shuffle(coloresAmostrar);
-// console.log(coloresAJugar + " a mostrar");
+console.log(coloresAJugar);
 //variable aux para indicar la fila que estamos comprobando
 let currentRow = 0;
 let seleccionActual = [];
@@ -38,12 +38,14 @@ const pintarTabla = (fila) => {
   let tabla = document.getElementById("tabla").getElementsByTagName("tbody")[0];
   for (let index = 0; index < fila; index++) {
     tabla.insertRow().innerHTML =
+      //averiguar porque no asigna los ids
+      // "<tr id='index'>" +
       "<tr>" +
       "<td data-pintado=''>?</td>" +
       "<td data-pintado=''>?</td>" +
       "<td data-pintado=''>?</td>" +
       "<td data-pintado=''>?</td>" +
-      "</tr> ";
+      "</tr>";
   }
 
   //como no asigna bien los id vamos a asignarlo ahora
@@ -74,12 +76,11 @@ comprobar = () => {
   let filaPintar = document.getElementById(currentRow + "_tabla");
   let mensaje = document.getElementById("mensaje");
 
-  console.log(filaPintar.childNodes[0].getAttribute("data-pintado"));
   //recorremos sus hijos y comproblamos si todas las cajas estan rellenadas, mostramos un mensaje
   for (let i = 0; i < filaPintar.childNodes.length; i++) {
     if (filaPintar.childNodes[i].getAttribute("data-pintado") == "") {
       mensaje.classList.add("mensaje");
-      mensaje.innerHTML = "Rellena la fila";
+      mensaje.innerHTML = "Rellena toda la fila";
       mensaje.addEventListener("animationend", () => {
         mensaje.classList.remove("mensaje");
         mensaje.innerHTML = "";
@@ -98,14 +99,36 @@ comprobar = () => {
     let result = comprobarResultado(seleccionActual, coloresAJugar);
 
     if (!result) {
-      currentRow++;
-      seleccionActual = [];
       mensaje.classList.add("mensaje");
       mensaje.innerHTML = "Te has equivocado, prueba otra vez";
       mensaje.addEventListener("animationend", () => {
         mensaje.classList.remove("mensaje");
         mensaje.innerHTML = "";
       });
+      // probar con for luego hacer un find para cada elementos del array
+      let arrComprobacion = [];
+      for (let h = 0; h < seleccionActual.length; h++) {
+        arrComprobacion.push(
+          coloresAJugar.findIndex((e) => e == seleccionActual[h])
+        );
+      }
+
+      let filaPintar = document.getElementById(currentRow + "_tabla");
+      console.log(arrComprobacion);
+      for (let i = 0; i < filaPintar.childNodes.length; i++) {
+        if (arrComprobacion[i] == -1) {
+          filaPintar.childNodes[i].innerHTML =
+            "<span class='iconosVerificacion'> ❌</span>";
+        } else if (arrComprobacion[i] == i) {
+          filaPintar.childNodes[i].innerHTML =
+            "<span class='iconosVerificacion'>✅</span>";
+        } else {
+          filaPintar.childNodes[i].innerHTML =
+            "<span class='iconosVerificacion'>❓</span>";
+        }
+      }
+      currentRow++;
+      seleccionActual = [];
       if (currentRow == 10) {
         currentRow = 0;
         sessionStorage.setItem("resultado", "lose");
@@ -135,11 +158,8 @@ const comprobarResultado = (arr1, arr2) => {
       result = true;
     }
   }
-
   return result;
 };
-
-pintarAyuda = () => {};
 
 borrar = () => {
   let filaPintar = document.getElementById(currentRow + "_tabla");
@@ -167,6 +187,7 @@ borrar = () => {
   }
 };
 
+// mostrarAyuda = (arr, arr2) => {};
 //llamamos a la funcion y le pasamos la dificultad
 pintarTablaSegunDificultad(dificultad);
 //pintamos los colores con los que vamos a jugar

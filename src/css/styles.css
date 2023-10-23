@@ -163,6 +163,9 @@ a {
   box-shadow: inset 0px -17px var(--negro);
 }
 
+#mensaje {
+  height: 55px;
+}
 .mensaje {
   padding: 0 0 1.2em 0;
   border: 1px solid black;
@@ -250,7 +253,7 @@ tr {
   }
 }
 
-.cajaResultado{
+.cajaResultado {
   margin: 2em;
   padding: 2em;
   border: 1px solid black;
@@ -259,7 +262,12 @@ tr {
   text-align: center;
 }
 
-.divBtnResult{
+.divBtnResult {
   display: flex;
   padding: 2em 0;
+}
+
+.iconosVerificacion {
+  background-color: var(--blanco);
+  border-radius: 50em;
 }
